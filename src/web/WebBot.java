@@ -23,7 +23,6 @@ public class WebBot extends HttpServlet {
 		
 	@Override
 	public void init() throws ServletException {
-		
 		super.init();
 	}
 	
@@ -47,6 +46,8 @@ public class WebBot extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 
+		System.out.println("哈哈哈");
+		
 		if(null == bot){
 			System.out.println("WebBot initializing..");
 			String realPath = request.getRealPath("/aiml");
@@ -67,6 +68,7 @@ public class WebBot extends HttpServlet {
 		String userInput = "";
 		if(null != request.getParameter("userInput")){
 			userInput = (String)request.getParameter("userInput");
+			userInput = URLDecoder.decode(userInput, "UTF-8");
 			/*byte[] b = userInput.getBytes("ISO-8859-1");
 			userInput = new String(b, "utf-8");*/
 			//userInput = URLDecoder.decode(userInput);
@@ -75,7 +77,7 @@ public class WebBot extends HttpServlet {
 		System.out.println("user input is : " + userInput);
 		
 		String botResponse = bot.respond(userInput);
-		
+		botResponse = botResponse.trim();
 		/*byte[] b = botResponse.getBytes("ISO-8859-1");
 		botResponse = new String(b, "utf-8");*/
 		
@@ -84,8 +86,4 @@ public class WebBot extends HttpServlet {
 		response.getWriter().write(botResponse);
 	}
 	
-	public static void main(String[] args){
-		System.out.println("哈哈哈");
-	}
-
 }
