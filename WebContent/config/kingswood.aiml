@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+<category> 
+	<pattern>你好啊</pattern> 
+	<template> 
+		<random>
+			<li>你也好啊</li>
+			<li>好什么啊</li>
+			<li>大家好</li>
+			<li>今天天气不错</li>
+			<li>很高兴认识你</li>
+		</random>
+	</template> 
+</category> 
+<category>
+	<pattern>HELLO</pattern>
+	<template><srai>你好啊</srai></template>
+</category>
+<category>
+	<pattern>我是*</pattern>
+	<template>
+		<think>
+			<set name="username"><star/></set>
+		</think>
+		你好啊，<get name="username"/>
+	</template>
+</category>
+</aiml>
